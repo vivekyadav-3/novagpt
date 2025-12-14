@@ -1,36 +1,204 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NovaGPT - AI Chat Application
 
-## Getting Started
+A full-stack AI chat application built with Next.js, Node.js/Express, MongoDB, and Google Gemini API.
 
-First, run the development server:
+## Features
+
+- 💬 Real-time AI chat powered by Google Gemini
+- 📝 Markdown rendering with syntax highlighting
+- 💾 Persistent chat history with MongoDB
+- 🗂️ Multiple conversation management
+- ⌨️ Typing effect animation
+- 🗑️ Delete conversations
+- 🎨 Modern dark-themed UI
+
+## Tech Stack
+
+### Frontend
+
+- **Next.js 16** - React framework
+- **React** - UI library
+- **Lucide React** - Icons
+- **React Markdown** - Markdown rendering
+- **CSS** - Styling
+
+### Backend
+
+- **Node.js** - Runtime
+- **Express** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **Google Generative AI** - AI integration
+
+## Project Structure
+
+```
+novagpt/
+├── backend/
+│   ├── models/
+│   │   ├── Chat.js          # Chat message schema
+│   │   └── Conversation.js  # Conversation schema
+│   ├── routes/
+│   │   └── api.js           # API routes
+│   ├── utils/
+│   │   └── gemini.js        # Gemini API integration
+│   ├── server.js            # Express server
+│   └── .env                 # Environment variables (not in git)
+│
+└── frontend/
+    ├── app/
+    │   ├── globals.css      # Global styles
+    │   ├── layout.js        # Root layout
+    │   └── page.js          # Main page
+    ├── components/
+    │   ├── ChatArea.js      # Chat interface
+    │   ├── ChatArea.css     # Chat styles
+    │   ├── Sidebar.js       # Sidebar navigation
+    │   └── Sidebar.css      # Sidebar styles
+    └── public/              # Static assets
+```
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- MongoDB (local or Atlas)
+- Google Gemini API key
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+
+```bash
+cd backend
+```
+
+2. Install dependencies:
+
+```bash
+npm install express mongoose cors dotenv @google/generative-ai
+```
+
+3. Create a `.env` file:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+MONGODB_URI=your_mongodb_connection_string
+PORT=5000
+```
+
+4. Start the backend server:
+
+```bash
+node server.js
+```
+
+The backend will run on `http://localhost:5000`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The frontend will run on `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Conversations
 
-## Learn More
+- `GET /api/conversations` - Get all conversations
+- `POST /api/conversations` - Create new conversation
+- `DELETE /api/conversations/:id` - Delete conversation
 
-To learn more about Next.js, take a look at the following resources:
+### Chat
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `POST /api/chat` - Send message and get AI response
+- `GET /api/chat/:conversationId` - Get messages for a conversation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Health Check
 
-## Deploy on Vercel
+- `GET /api/test` - Test server and database connection
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend (.env)
+
+```env
+GEMINI_API_KEY=your_api_key
+MONGODB_URI=mongodb://localhost:27017/novagpt
+PORT=5000
+```
+
+## Features in Detail
+
+### Chat Interface
+
+- Real-time messaging with AI
+- Markdown support for formatted responses
+- Code syntax highlighting
+- Typing animation effect
+- Auto-scroll to latest message
+
+### Conversation Management
+
+- Create new conversations
+- View conversation history in sidebar
+- Delete unwanted conversations
+- Auto-generated conversation titles
+
+### Data Persistence
+
+- All messages saved to MongoDB
+- Conversations persist across sessions
+- Load previous conversations on demand
+
+## Development
+
+### Running in Development Mode
+
+1. Start MongoDB (if local)
+2. Start backend: `cd backend && node server.js`
+3. Start frontend: `cd frontend && npm run dev`
+4. Open `http://localhost:3000`
+
+### Building for Production
+
+Frontend:
+
+```bash
+cd frontend
+npm run build
+npm start
+```
+
+## Contributing
+
+Feel free to submit issues and pull requests!
+
+## License
+
+MIT
+
+## Author
+
+Your Name
+
+---
+
+Built with ❤️ using Next.js and Google Gemini
